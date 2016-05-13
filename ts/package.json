@@ -7,8 +7,8 @@
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
     "@angular/core": "2.0.0-rc.1",
-    "@strictd/madame": "git+http://ng2.git.strictd.com/madame.git",
-    "@strictd/mono-logging": "git+http://ng2.git.strictd.com/mono-logging.git"
+    "@strictd/madame": "^1.0.4",
+    "@strictd/mono-logging": "^1.0.1"
   },
   "devDependencies": {
     "@angular/common": "^2.0.0-rc.1",

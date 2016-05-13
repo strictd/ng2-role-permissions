@@ -1,15 +1,14 @@
 {
   "name": "@strictd/role-permissions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Role based permissions",
   "main": "role-permissions.js",
-  "private": true,
   "author": "Gary <gravity.addiction@gmail.com>",
   "license": "License-Ref",
   "dependencies": {
     "@angular/core": "2.0.0-rc.1",
-    "@strictd/madame": "git+http://ng2.git.strictd.com/madame.git",
-    "@strictd/mono-logging": "git+http://ng2.git.strictd.com/mono-logging.git"
+    "@strictd/madame": "^1.0.4",
+    "@strictd/mono-logging": "^1.0.1"
   },
   "devDependencies": {
     "@angular/common": "^2.0.0-rc.1",
