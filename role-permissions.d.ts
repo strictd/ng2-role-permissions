@@ -7,7 +7,7 @@ export interface UserPermissions {
     components: ComponentPermissionList;
 }
 export interface ComponentPermissionList {
-    [index: number]: ComponentPermissions;
+    [index: string]: ComponentPermissions;
 }
 export interface ComponentPermissions {
     operations: OperationPermissions;

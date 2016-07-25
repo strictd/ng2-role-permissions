@@ -41,13 +41,14 @@ var RolePermissions = (function () {
             component_ids = [component_ids];
         }
         var _t = this;
-        var compGet = this.madame.authGet('permissions/components?component_ids=' + encodeURIComponent(component_ids.join(',')));
+        var compGet = this.madame.authGet('permissions/components?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
         compGet.subscribe(function (response) {
             var resp = response.json();
             if (resp.permissions !== undefined) {
-                var permLen = resp.permissions.length;
+                var permKeys = Object.keys(resp.permissions);
+                var permLen = permKeys.length;
                 for (var _p = 0; _p < permLen; _p++) {
-                    _t.p.components[_p] = resp.permissions[_p];
+                    _t.p.components[permKeys[_p]] = resp.permissions[permKeys[_p]];
                 }
                 _this.savePermissions();
                 RolePermissions._permissionObserver.next(_t.p);

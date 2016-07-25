@@ -12,7 +12,7 @@ export interface UserPermissions {
 }
 
 export interface ComponentPermissionList {
-  [index: number]: ComponentPermissions;
+  [index: string]: ComponentPermissions;
 }
 
 export interface ComponentPermissions {
@@ -66,14 +66,16 @@ export class RolePermissions {
   fetchComponentPermission(component_ids: any): Observable<any> {
     if (typeof component_ids === 'string') { component_ids = [component_ids]; }
     let _t = this;
-    let compGet = this.madame.authGet('permissions/components?component_ids=' + encodeURIComponent(component_ids.join(',')));
+    let compGet = this.madame.authGet('permissions/components?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
     compGet.subscribe(
       response => {
         let resp = response.json();
         if (resp.permissions !== undefined) {
-          let permLen = resp.permissions.length;
+          let permKeys = Object.keys(resp.permissions);
+          let permLen = permKeys.length;
+
           for (let _p = 0; _p < permLen; _p++) {
-            _t.p.components[_p] = resp.permissions[_p];
+            _t.p.components[permKeys[_p]] = resp.permissions[permKeys[_p]];
           }
 
           this.savePermissions();
