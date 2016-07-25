@@ -10,13 +10,13 @@ export interface ComponentPermissionList {
     [index: string]: ComponentPermissions;
 }
 export interface ComponentPermissions {
-    operations: OperationPermissions;
+    operations: Array<number>;
     role_id: number;
     component_tag?: string;
     role_tag?: string;
 }
 export interface OperationPermissions {
-    [index: string]: number[];
+    [index: string]: number;
 }
 export declare class RolePermissions {
     static _permissionObserver: Observer<any>;

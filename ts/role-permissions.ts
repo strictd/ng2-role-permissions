@@ -16,14 +16,14 @@ export interface ComponentPermissionList {
 }
 
 export interface ComponentPermissions {
-  operations: OperationPermissions;
+  operations: Array<number>;
   role_id: number;
   component_tag?: string;
   role_tag?: string;
 }
 
 export interface OperationPermissions {
-  [index: string]: number[]; // index is gadget_id
+  [index: string]: number; // index is gadget_id
 }
 
 @Injectable()
@@ -106,11 +106,12 @@ export class RolePermissions {
   }
 
   hasPermission(component_id: number, operation_id: number): boolean {
-    try {
-      if (this.p.components[component_id].operations[0] !== undefined) { return false; }
-      if (this.p.components[component_id].operations[1] !== undefined) { return true; }
-      if (this.p.components[component_id].operations[operation_id] !== undefined) { return true; }
-    } catch (e) { return false; }
+    console.log('COMP', this.p.components[component_id].operations[1]);
+    //try {
+      if (this.p.components[component_id].operations.indexOf(0) !== -1) { return false; }
+      if (this.p.components[component_id].operations.indexOf(1) !== -1) { return true; }
+      if (this.p.components[component_id].operations.indexOf(operation_id) !== -1) { return true; }
+    //} catch (e) { return false; }
   return false;
   }
 
