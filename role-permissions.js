@@ -69,19 +69,19 @@ var RolePermissions = (function () {
         return this.hasPermission(component_id, 5);
     };
     RolePermissions.prototype.hasPermission = function (component_id, operation_id) {
-        if (typeof this.p === 'undefined' || typeof this.p.components === 'undefined' ||
-            typeof this.p.components[component_id] === 'undefined' ||
-            typeof this.p.components[component_id].operations === 'undefined') {
+        try {
+            if (this.p.components[component_id].operations.indexOf(0) !== -1) {
+                return false;
+            }
+            if (this.p.components[component_id].operations.indexOf(1) !== -1) {
+                return true;
+            }
+            if (this.p.components[component_id].operations.indexOf(operation_id) !== -1) {
+                return true;
+            }
+        }
+        catch (e) {
             return false;
-        }
-        if (this.p.components[component_id].operations.indexOf(0) !== -1) {
-            return false;
-        }
-        if (this.p.components[component_id].operations.indexOf(1) !== -1) {
-            return true;
-        }
-        if (this.p.components[component_id].operations.indexOf(operation_id) !== -1) {
-            return true;
         }
         return false;
     };

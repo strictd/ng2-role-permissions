@@ -106,15 +106,12 @@ export class RolePermissions {
   }
 
   hasPermission(component_id: number, operation_id: number): boolean {
-    if (
-      typeof this.p === 'undefined' || typeof this.p.components === 'undefined' ||
-      typeof this.p.components[component_id] === 'undefined' ||
-      typeof this.p.components[component_id].operations === 'undefined'
-    ) { return false; }
+    try {
+      if (this.p.components[component_id].operations.indexOf(0) !== -1) { return false; }
+      if (this.p.components[component_id].operations.indexOf(1) !== -1) { return true; }
+      if (this.p.components[component_id].operations.indexOf(operation_id) !== -1) { return true; }
+    } catch(e) { return false; }
 
-    if (this.p.components[component_id].operations.indexOf(0) !== -1) { return false; }
-    if (this.p.components[component_id].operations.indexOf(1) !== -1) { return true; }
-    if (this.p.components[component_id].operations.indexOf(operation_id) !== -1) { return true; }
   return false;
   }
 
