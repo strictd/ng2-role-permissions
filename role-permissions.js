@@ -69,7 +69,11 @@ var RolePermissions = (function () {
         return this.hasPermission(component_id, 5);
     };
     RolePermissions.prototype.hasPermission = function (component_id, operation_id) {
-        console.log('COMP', this.p.components[component_id].operations[1]);
+        if (typeof this.p === 'undefined' || typeof this.p.components === 'undefined' ||
+            typeof this.p.components[component_id] === 'undefined' ||
+            typeof this.p.components[component_id].operations === 'undefined') {
+            return false;
+        }
         if (this.p.components[component_id].operations.indexOf(0) !== -1) {
             return false;
         }
