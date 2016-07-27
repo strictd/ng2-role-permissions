@@ -41,7 +41,7 @@ var RolePermissions = (function () {
             component_ids = [component_ids];
         }
         var _t = this;
-        var compGet = this.madame.authGet('permissions/components?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
+        var compGet = this.madame.authGet('permissions?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
         compGet.subscribe(function (response) {
             var resp = response.json();
             if (resp.permissions !== undefined) {

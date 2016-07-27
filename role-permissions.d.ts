@@ -3,6 +3,36 @@ import { MadameService } from '@strictd/madame/madame-service';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/share';
+export interface RoleInfo {
+    id: number;
+    tag: string;
+    description: string;
+    updated_at: string;
+    created_at: string;
+}
+export interface ComponentInfo {
+    id: number;
+    tag: string;
+    description: string;
+    updated_at: string;
+    created_at: string;
+}
+export interface OperationInfo {
+    id: number;
+    tag: string;
+    description: string;
+    updated_at: string;
+    created_at: string;
+}
+export interface PermissionInfo {
+    id: number;
+    role_id: number;
+    component_id: number;
+    operation_id: number;
+    rank: number;
+    updated_at: string;
+    created_at: string;
+}
 export interface UserPermissions {
     components: ComponentPermissionList;
 }
