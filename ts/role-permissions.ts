@@ -99,27 +99,16 @@ export class RolePermissions {
 
   fetchComponentPermission(component_ids: any): Observable<any> {
     if (typeof component_ids === 'string') { component_ids = [component_ids]; }
-    let _t = this;
-    let compGet = this.madame.authGet('permissions?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
-    compGet.subscribe(
-      response => {
-        let resp = response.json();
-        if (resp.permissions !== undefined) {
-          let permKeys = Object.keys(resp.permissions);
-          let permLen = permKeys.length;
+    return this.madame.authGet('permissions?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
+  }
 
-          for (let _p = 0; _p < permLen; _p++) {
-            _t.p.components[permKeys[_p]] = resp.permissions[permKeys[_p]];
-          }
+  setPermissions(resp: any) {
+    let permKeys = Object.keys(resp);
+    let permLen = permKeys.length;
 
-          this.savePermissions();
-          RolePermissions._permissionObserver.next(_t.p);
-        }
-      },
-      error => { this.mono.log('Error: ' + error.text()); }
-    );
-
-    return compGet;
+    for (let _p = 0; _p < permLen; _p++) {
+      this.p.components[permKeys[_p]] = resp[permKeys[_p]];
+    }
   }
 
 

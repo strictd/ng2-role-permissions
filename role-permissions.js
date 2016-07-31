@@ -36,25 +36,17 @@ var RolePermissions = (function () {
         this.p = this.currentPermissions();
     };
     RolePermissions.prototype.fetchComponentPermission = function (component_ids) {
-        var _this = this;
         if (typeof component_ids === 'string') {
             component_ids = [component_ids];
         }
-        var _t = this;
-        var compGet = this.madame.authGet('permissions?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
-        compGet.subscribe(function (response) {
-            var resp = response.json();
-            if (resp.permissions !== undefined) {
-                var permKeys = Object.keys(resp.permissions);
-                var permLen = permKeys.length;
-                for (var _p = 0; _p < permLen; _p++) {
-                    _t.p.components[permKeys[_p]] = resp.permissions[permKeys[_p]];
-                }
-                _this.savePermissions();
-                RolePermissions._permissionObserver.next(_t.p);
-            }
-        }, function (error) { _this.mono.log('Error: ' + error.text()); });
-        return compGet;
+        return this.madame.authGet('permissions?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
+    };
+    RolePermissions.prototype.setPermissions = function (resp) {
+        var permKeys = Object.keys(resp);
+        var permLen = permKeys.length;
+        for (var _p = 0; _p < permLen; _p++) {
+            this.p.components[permKeys[_p]] = resp[permKeys[_p]];
+        }
     };
     RolePermissions.prototype.canCreate = function (component_id) {
         return this.hasPermission(component_id, 2);

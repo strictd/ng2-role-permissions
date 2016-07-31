@@ -1,6 +1,6 @@
 {
   "name": "@strictd/role-permissions",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Role based permissions",
   "main": "role-permissions.js",
   "author": "Gary <gravity.addiction@gmail.com>",

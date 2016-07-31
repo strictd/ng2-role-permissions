@@ -59,6 +59,7 @@ export declare class RolePermissions {
     savePermissions(): void;
     resetPermissions(): void;
     fetchComponentPermission(component_ids: any): Observable<any>;
+    setPermissions(resp: any): void;
     canCreate(component_id: number): boolean;
     canRead(component_id: number): boolean;
     canUpdate(component_id: number): boolean;
