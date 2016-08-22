@@ -35,6 +35,9 @@ export interface PermissionInfo {
 }
 export interface UserPermissions {
     components: ComponentPermissionList;
+    component_tag?: any;
+    operation_tag?: any;
+    role_tag?: any;
 }
 export interface ComponentPermissionList {
     [index: string]: ComponentPermissions;
@@ -60,9 +63,9 @@ export declare class RolePermissions {
     resetPermissions(): void;
     fetchComponentPermission(component_ids: any): Observable<any>;
     setPermissions(resp: any): void;
-    canCreate(component_id: number): boolean;
-    canRead(component_id: number): boolean;
-    canUpdate(component_id: number): boolean;
-    canDelete(component_id: number): boolean;
-    hasPermission(component_id: number, operation_id: number): boolean;
+    canCreate(component_id: number, perms?: UserPermissions): boolean;
+    canRead(component_id: number, perms?: UserPermissions): boolean;
+    canUpdate(component_id: number, perms?: UserPermissions): boolean;
+    canDelete(component_id: number, perms?: UserPermissions): boolean;
+    hasPermission(component_id: number, operation_id: number, perms?: UserPermissions): boolean;
 }

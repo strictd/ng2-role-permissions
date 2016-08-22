@@ -48,32 +48,30 @@ var RolePermissions = (function () {
             this.p.components[permKeys[_p]] = resp[permKeys[_p]];
         }
     };
-    RolePermissions.prototype.canCreate = function (component_id) {
-        return this.hasPermission(component_id, 2);
+    RolePermissions.prototype.canCreate = function (component_id, perms) {
+        return this.hasPermission(component_id, 2, perms);
     };
-    RolePermissions.prototype.canRead = function (component_id) {
-        return this.hasPermission(component_id, 3);
+    RolePermissions.prototype.canRead = function (component_id, perms) {
+        return this.hasPermission(component_id, 3, perms);
     };
-    RolePermissions.prototype.canUpdate = function (component_id) {
-        return this.hasPermission(component_id, 4);
+    RolePermissions.prototype.canUpdate = function (component_id, perms) {
+        return this.hasPermission(component_id, 4, perms);
     };
-    RolePermissions.prototype.canDelete = function (component_id) {
-        return this.hasPermission(component_id, 5);
+    RolePermissions.prototype.canDelete = function (component_id, perms) {
+        return this.hasPermission(component_id, 5, perms);
     };
-    RolePermissions.prototype.hasPermission = function (component_id, operation_id) {
-        try {
-            if (this.p.components[component_id].operations.indexOf(0) !== -1) {
-                return false;
-            }
-            if (this.p.components[component_id].operations.indexOf(1) !== -1) {
-                return true;
-            }
-            if (this.p.components[component_id].operations.indexOf(operation_id) !== -1) {
-                return true;
-            }
+    RolePermissions.prototype.hasPermission = function (component_id, operation_id, perms) {
+        if (perms === void 0) {
+            perms = this.p;
         }
-        catch (e) {
+        if (perms.components[component_id].operations.indexOf(0) !== -1) {
             return false;
+        }
+        if (perms.components[component_id].operations.indexOf(1) !== -1) {
+            return true;
+        }
+        if (perms.components[component_id].operations.indexOf(operation_id) !== -1) {
+            return true;
         }
         return false;
     };

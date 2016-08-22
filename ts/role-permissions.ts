@@ -43,6 +43,9 @@ export interface PermissionInfo {
 
 export interface UserPermissions {
   components: ComponentPermissionList;
+  component_tag?: any,
+  operation_tag?: any,
+  role_tag?: any
 }
 
 export interface ComponentPermissionList {
@@ -112,28 +115,28 @@ export class RolePermissions {
   }
 
 
-  canCreate(component_id: number): boolean {
-    return this.hasPermission(component_id, 2);
+  canCreate(component_id: number, perms?: UserPermissions): boolean {
+    return this.hasPermission(component_id, 2, perms);
   }
 
-  canRead(component_id: number): boolean {
-    return this.hasPermission(component_id, 3);
+  canRead(component_id: number, perms?: UserPermissions): boolean {
+    return this.hasPermission(component_id, 3, perms);
   }
 
-  canUpdate(component_id: number): boolean {
-    return this.hasPermission(component_id, 4);
+  canUpdate(component_id: number, perms?: UserPermissions): boolean {
+    return this.hasPermission(component_id, 4, perms);
   }
 
-  canDelete(component_id: number): boolean {
-    return this.hasPermission(component_id, 5);
+  canDelete(component_id: number, perms?: UserPermissions): boolean {
+    return this.hasPermission(component_id, 5, perms);
   }
 
-  hasPermission(component_id: number, operation_id: number): boolean {
-    try {
-      if (this.p.components[component_id].operations.indexOf(0) !== -1) { return false; }
-      if (this.p.components[component_id].operations.indexOf(1) !== -1) { return true; }
-      if (this.p.components[component_id].operations.indexOf(operation_id) !== -1) { return true; }
-    } catch(e) { return false; }
+  hasPermission(component_id: number, operation_id: number, perms?: UserPermissions): boolean {
+    if (perms === void 0) { perms = this.p; }
+
+    if (perms.components[component_id].operations.indexOf(0) !== -1) { return false; }
+    if (perms.components[component_id].operations.indexOf(1) !== -1) { return true; }
+    if (perms.components[component_id].operations.indexOf(operation_id) !== -1) { return true; }
 
   return false;
   }
