@@ -134,9 +134,11 @@ export class RolePermissions {
   hasPermission(component_id: number, operation_id: number, perms?: UserPermissions): boolean {
     if (perms === void 0) { perms = this.p; }
 
-    if (perms.components[component_id].operations.indexOf(0) !== -1) { return false; }
-    if (perms.components[component_id].operations.indexOf(1) !== -1) { return true; }
-    if (perms.components[component_id].operations.indexOf(operation_id) !== -1) { return true; }
+    try {
+      if (perms.components[component_id].operations.indexOf(0) !== -1) { return false; }
+      if (perms.components[component_id].operations.indexOf(1) !== -1) { return true; }
+      if (perms.components[component_id].operations.indexOf(operation_id) !== -1) { return true; }
+    } catch (e) { }
 
   return false;
   }

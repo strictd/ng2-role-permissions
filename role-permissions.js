@@ -64,15 +64,18 @@ var RolePermissions = (function () {
         if (perms === void 0) {
             perms = this.p;
         }
-        if (perms.components[component_id].operations.indexOf(0) !== -1) {
-            return false;
+        try {
+            if (perms.components[component_id].operations.indexOf(0) !== -1) {
+                return false;
+            }
+            if (perms.components[component_id].operations.indexOf(1) !== -1) {
+                return true;
+            }
+            if (perms.components[component_id].operations.indexOf(operation_id) !== -1) {
+                return true;
+            }
         }
-        if (perms.components[component_id].operations.indexOf(1) !== -1) {
-            return true;
-        }
-        if (perms.components[component_id].operations.indexOf(operation_id) !== -1) {
-            return true;
-        }
+        catch (e) { }
         return false;
     };
     RolePermissions._permissionObserable = new Observable_1.Observable(function (observer) {
