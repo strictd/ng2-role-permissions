@@ -9,15 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var mono_logging_1 = require('@strictd/mono-logging/mono-logging');
-var madame_service_1 = require('@strictd/madame/madame-service');
 var Observable_1 = require('rxjs/Observable');
 require('rxjs/add/operator/share');
 var RolePermissions = (function () {
-    function RolePermissions(_mono, _madame) {
+    function RolePermissions() {
         this.p = { components: {} };
-        this.mono = _mono;
-        this.madame = _madame;
         RolePermissions._permissionObserable.subscribe(function (data) { return; });
         this.p = this.currentPermissions();
     }
@@ -34,12 +30,6 @@ var RolePermissions = (function () {
     RolePermissions.prototype.resetPermissions = function () {
         localStorage.removeItem('strictPermission');
         this.p = this.currentPermissions();
-    };
-    RolePermissions.prototype.fetchComponentPermission = function (component_ids) {
-        if (typeof component_ids === 'string') {
-            component_ids = [component_ids];
-        }
-        return this.madame.authGet('permissions?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
     };
     RolePermissions.prototype.setPermissions = function (resp) {
         var permKeys = Object.keys(resp);
@@ -83,7 +73,7 @@ var RolePermissions = (function () {
     }).share();
     RolePermissions = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [mono_logging_1.MonoLogging, madame_service_1.MadameService])
+        __metadata('design:paramtypes', [])
     ], RolePermissions);
     return RolePermissions;
 }());

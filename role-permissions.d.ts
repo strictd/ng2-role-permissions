@@ -1,5 +1,4 @@
-import { MonoLogging } from '@strictd/mono-logging/mono-logging';
-import { MadameService } from '@strictd/madame/madame-service';
+/// <reference types="core-js" />
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/share';
@@ -54,14 +53,11 @@ export interface OperationPermissions {
 export declare class RolePermissions {
     static _permissionObserver: Observer<any>;
     static _permissionObserable: Observable<{}>;
-    mono: MonoLogging;
-    madame: MadameService;
     p: UserPermissions;
-    constructor(_mono: MonoLogging, _madame: MadameService);
+    constructor();
     currentPermissions(): any;
     savePermissions(): void;
     resetPermissions(): void;
-    fetchComponentPermission(component_ids: any): Observable<any>;
     setPermissions(resp: any): void;
     canCreate(component_id: number, perms?: UserPermissions): boolean;
     canRead(component_id: number, perms?: UserPermissions): boolean;

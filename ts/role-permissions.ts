@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MonoLogging } from '@strictd/mono-logging/mono-logging';
-import { MadameService } from '@strictd/madame/madame-service';
 
 // import { App } from '../../app';
 import { Observable } from 'rxjs/Observable';
@@ -43,9 +41,9 @@ export interface PermissionInfo {
 
 export interface UserPermissions {
   components: ComponentPermissionList;
-  component_tag?: any,
-  operation_tag?: any,
-  role_tag?: any
+  component_tag?: any;
+  operation_tag?: any;
+  role_tag?: any;
 }
 
 export interface ComponentPermissionList {
@@ -71,15 +69,11 @@ export class RolePermissions {
    RolePermissions._permissionObserver = observer; // Assign to static RolePermissions._permissionObserver
   }).share();
 
-  mono: MonoLogging;
-  madame: MadameService;
   p: UserPermissions = {components: {}};
 
-  constructor(_mono: MonoLogging, _madame: MadameService) {
-    this.mono = _mono;
-    this.madame = _madame;
+  constructor() {
 
-    RolePermissions._permissionObserable.subscribe((data) => { return; });
+    RolePermissions._permissionObserable.subscribe((data: any) => { return; });
     this.p = this.currentPermissions();
 
   }
@@ -100,10 +94,10 @@ export class RolePermissions {
     this.p = this.currentPermissions();
   }
 
-  fetchComponentPermission(component_ids: any): Observable<any> {
+  /* fetchComponentPermission(component_ids: any): Observable<any> {
     if (typeof component_ids === 'string') { component_ids = [component_ids]; }
     return this.madame.authGet('permissions?component_ids=' + encodeURIComponent(component_ids.join(','))).share();
-  }
+  } */
 
   setPermissions(resp: any) {
     let permKeys = Object.keys(resp);
