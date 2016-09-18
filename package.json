@@ -6,7 +6,7 @@
   "author": "Gary <gravity.addiction@gmail.com>",
   "license": "License-Ref",
   "dependencies": {
-    "@angular/core": "^2.0.0-rc.6",
-    "@angular/common": "^2.0.0-rc.6"
+    "@angular/core": "^2.0.0",
+    "@angular/common": "^2.0.0"
   }
 }
