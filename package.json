@@ -1,7 +1,12 @@
 {
-  "name": "@strictd/role-permissions",
+  "name": "@strictd/ng2-role-permissions",
   "version": "1.1.3",
   "description": "Role based permissions",
+  "keywords": [
+    "angular2",
+    "permissions",
+    "role permissions"
+  ],
   "main": "role-permissions.js",
   "author": "Gary <gary@strictdevelopment.com>",
   "license": "MIT",
@@ -11,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/strictd/role-permissions.git"
+    "url": "git+https://github.com/strictd/ng2-role-permissions.git"
   },    
   "dependencies": {
     "@angular/core": "^2.0.0",
