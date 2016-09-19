@@ -1,7 +1,7 @@
 {
   "version": "2.0.2",
   "compilerOptions": {
-    "outDir": "../",
+    "outDir": "./",
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -15,11 +15,9 @@
     "declaration": true
   },
   "files": [
-    "role-permissions.ts"
+    "src/index.ts",
+    "src/role-permissions.ts"
   ],
-  "filesGlob": [
-    "!node_modules/**/*"
-  ],    
   "exclude": [
     "node_modules"
   ]
